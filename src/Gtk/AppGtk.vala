@@ -37,7 +37,7 @@ using TeeJee.Misc;
 public Main App;
 public const string AppName = "Ubuntu Kernel Update Utility";
 public const string AppShortName = "ukuu";
-public const string AppVersion = "17.2.3";
+public const string AppVersion = "17.12";
 public const string AppAuthor = "Tony George";
 public const string AppAuthorEmail = "teejeetech@gmail.com";
 
@@ -95,16 +95,6 @@ public class AppGtk : GLib.Object {
 		Intl.textdomain(GETTEXT_PACKAGE);
 		Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "utf-8");
 		Intl.bindtextdomain(GETTEXT_PACKAGE, LOCALE_DIR);
-	}
-
-	public static void check_if_admin(){
-		if (!user_is_admin()) {
-			string msg = _("Root access is required for running this application.") + "\n";
-			msg += _("Run the application as root or using gksu/sudo.");
-			string title = _("Root Access Required");
-			gtk_messagebox(title, msg, null, true);
-			exit(0);
-		}
 	}
 
 	public static bool parse_arguments(string[] args) {

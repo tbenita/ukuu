@@ -46,19 +46,20 @@ public class MainWindow : Gtk.Window{
 	
 	// helper members
 
-	private int window_width = 550;
+	private int window_width = 600;
 	private int window_height = 400;
 	private uint tmr_init = -1;
 
 	private Gee.ArrayList<LinuxKernel> selected_kernels;
 	
 	public MainWindow() {
+		
 		title = "%s (Ukuu) v%s".printf(AppName, AppVersion);
         window_position = WindowPosition.CENTER;
         icon = get_app_icon(16,".svg");
 
         // vbox_main
-        vbox_main = new Box (Orientation.VERTICAL, 6);
+        vbox_main = new Gtk.Box (Orientation.VERTICAL, 6);
         vbox_main.margin = 6;
         vbox_main.set_size_request(window_width, window_height);
         add (vbox_main);
@@ -118,7 +119,7 @@ public class MainWindow : Gtk.Window{
 	private void init_treeview(){
 
 		// hbox
-		hbox_list = new Box (Orientation.HORIZONTAL, 6);
+		hbox_list = new Gtk.Box (Orientation.HORIZONTAL, 6);
 		//hbox.margin = 6;
 		vbox_main.add(hbox_list);
 		
@@ -326,7 +327,7 @@ public class MainWindow : Gtk.Window{
 
 	private void init_actions(){
 
-		var hbox = new Box (Orientation.VERTICAL, 6);
+		var hbox = new Gtk.Box (Orientation.VERTICAL, 6);
 		hbox_list.add (hbox);
 
 		// refresh
@@ -417,7 +418,7 @@ public class MainWindow : Gtk.Window{
 		
 		button.clicked.connect(() => {
 			if ((selected_kernels.size == 1) && file_exists(selected_kernels[0].changes_file)){
-				exo_open_textfile(selected_kernels[0].changes_file);
+				xdg_open_textfile(selected_kernels[0].changes_file);
 			}
 		});
 
@@ -485,7 +486,7 @@ public class MainWindow : Gtk.Window{
 
 		dialog.program_name = AppName;
 		dialog.comments = _("Kernel upgrade utility for Ubuntu-based distributions");
-		dialog.copyright = "Copyright © 2016 Tony George (%s)".printf(AppAuthorEmail);
+		dialog.copyright = "Copyright © 2012-17 Tony George (%s)".printf(AppAuthorEmail);
 		dialog.version = AppVersion;
 		dialog.logo = get_app_icon(128);
 
@@ -567,7 +568,7 @@ public class MainWindow : Gtk.Window{
 		vbox_main.add(scrolled);
 
 		// hbox
-		var hbox = new Box (Orientation.HORIZONTAL, 6);
+		var hbox = new Gtk.Box (Orientation.HORIZONTAL, 6);
 		//hbox.margin = 6;
 		scrolled.add(hbox);
 
